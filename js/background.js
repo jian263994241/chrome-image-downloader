@@ -11,7 +11,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
             if (previewPage) {
                 chrome.tabs.sendMessage(previewPage, _.extend(response, {srcTabId: tab.id}));
             } else {
-                chrome.tabs.create({url: './preview.html', active: true}, function (previewTab) {
+                chrome.tabs.create({url: './gallery.html', active: true}, function (previewTab) {
                     chrome.tabs.sendMessage(previewTab.id, _.extend(response, {srcTabId: tab.id}));
                     previewPage = previewTab.id
                 });

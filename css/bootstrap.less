@@ -49,16 +49,26 @@
 @import "utilities.less";
 @import "responsive-utilities.less";
 
-
-.thumbnail{
+.imgw{
+  .make-xs-column(2,@grid-gutter-width);
+}
+.imgw .thumbnail{
   img{
     max-width: 100%;
-    max-height: 100%;
   }
   &.vcenter{
     position: relative;
-    width: 250px;
-    height: 250px;
+    padding: 100% 100% 0 0;
+    overflow: hidden;
+    .checkbox{
+      top: auto;
+      bottom: -10px;
+    }
+    &.active{
+      .checkbox:after{
+        opacity: 1;
+      }
+    }
     img{
       position: absolute;
       left: 50%;
@@ -70,19 +80,54 @@
       word-break: normal;
       overflow: hidden;
       text-overflow: ellipsis;
-      display: none;
       position: absolute;
       white-space: nowrap;
       bottom: 0;
-      left: 0;
-      width: 100%;
+      right: 0;
+      padding: 0 .3em;
       background-color: rgba(012, 012, 012, 0.3);
-    }
-    &:hover{
-      em{
-        display: block;
-      }
+      color:#fff;
     }
   }
 }
 
+
+/**
+ * Create the box for the checkbox
+ */
+.checkbox {
+  cursor: pointer;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+  background: #eee;
+  border:1px solid #ddd;
+}
+
+/**
+ * Display the tick inside the checkbox
+ */
+.checkbox:after {
+  opacity: 0.2;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 6px;
+  left: 7px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.checkbox:hover::after {
+  opacity: 0.5;
+}

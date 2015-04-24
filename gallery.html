@@ -35,25 +35,21 @@
         </ul>
         <form class="navbar-form navbar-left">
             <div class="form-group">
-                <select class="form-control">
-                    <option value="">默认排序</option>
-                    <option value="">大图在前</option>
-                    <option value="">小图在前</option>
-                </select>
+                <!--<select class="form-control">-->
+                    <!--<option value="">默认排序</option>-->
+                    <!--<option value="">大图在前</option>-->
+                    <!--<option value="">小图在前</option>-->
+                <!--</select>-->
                 <div class="btn-group">
-                    <label class="btn btn-default" ng-model="imageView" btn-radio="'grid'"><span class="glyphicon glyphicon-th-large"></span></label>
-                    <label class="btn btn-default" ng-model="imageView" btn-radio="'list'"><span class="glyphicon glyphicon-list"></span></label>
-                </div>
-                <div class="btn-group">
-                    <a href="" class="btn btn-default">全选</a>
-                    <a href="" class="btn btn-default">反选</a>
+                    <a href="" class="btn btn-default" ng-click="setAll($event)">全选</a>
+                    <a href="" class="btn btn-default" ng-click="setInvert($event)">反选</a>
                 </div>
             </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <button class="btn btn-success navbar-btn" type="button">
-                    保存图片 <span class="badge">{{imgs.length}}</span>
+                    保存图片 <span class="badge">{{selImg.length}}</span>
                 </button>
                 <button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-cog"></span></button>
             </li>
@@ -64,9 +60,11 @@
 </nav>
 <div class="image-list container-fluid" ng-controller="imageList">
     <div class="row">
-        <div class="col-xs-6 col-md-3" ng-repeat="item in imgs">
-            <a href="#" class="thumbnail vcenter" title="{{ item.name }}">
+        <div class="imgw" ng-repeat="item in imgs">
+            <a href="" class="thumbnail vcenter" title="{{ item.name }}" ng-click="checked($event)">
                 <img src="img/loader.gif" ng-src="{{ item.src }}">
+                <i class="checkbox"></i>
+                <em>{{item.width}} × {{item.height}}</em>
             </a>
         </div>
     </div>

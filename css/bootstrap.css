@@ -4580,7 +4580,6 @@ a.list-group-item.active > .badge,
   margin-right: auto;
 }
 a.thumbnail:hover,
-a.thumbnail:focus,
 a.thumbnail.active {
   border-color: #428bca;
 }
@@ -6156,16 +6155,30 @@ button.close {
     display: none !important;
   }
 }
-.thumbnail img {
-  max-width: 100%;
-  max-height: 100%;
-}
-.thumbnail.vcenter {
+.imgw {
   position: relative;
-  width: 250px;
-  height: 250px;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
-.thumbnail.vcenter img {
+.imgw .thumbnail img {
+  max-width: 100%;
+}
+.imgw .thumbnail.vcenter {
+  position: relative;
+  padding: 100% 100% 0 0;
+  overflow: hidden;
+}
+.imgw .thumbnail.vcenter .checkbox {
+  top: auto;
+  bottom: -10px;
+}
+.imgw .thumbnail.vcenter.active .checkbox:after {
+  opacity: 1;
+}
+.imgw .thumbnail.vcenter img {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -6174,19 +6187,53 @@ button.close {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.thumbnail.vcenter em {
+.imgw .thumbnail.vcenter em {
   word-wrap: break-word;
   word-break: normal;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: none;
   position: absolute;
   white-space: nowrap;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  padding: 0 .3em;
   background-color: rgba(12, 12, 12, 0.3);
+  color: #fff;
 }
-.thumbnail.vcenter:hover em {
-  display: block;
+/**
+ * Create the box for the checkbox
+ */
+.checkbox {
+  cursor: pointer;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+  background: #eee;
+  border: 1px solid #ddd;
+}
+/**
+ * Display the tick inside the checkbox
+ */
+.checkbox:after {
+  opacity: 0.2;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 6px;
+  left: 7px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.checkbox:hover::after {
+  opacity: 0.5;
 }
