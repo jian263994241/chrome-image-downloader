@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="dlImg">
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>批量图片下载</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.css"/>
     <link rel="stylesheet" href="css/angular.rangeSlider.css"/>
     <script src="js/lib/jquery-2.1.3.min.js"></script>
     <script src="js/lib/underscore-min.js"></script>
@@ -48,10 +49,10 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <button class="btn btn-success navbar-btn" type="button">
+                <button class="btn btn-success navbar-btn" type="button" ng-click="download()">
                     保存图片 <span class="badge">{{selImg.length}}</span>
                 </button>
-                <button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-cog"></span></button>
+                <button class="btn btn-default navbar-btn" ng-click="openSetting()"><span class="glyphicon glyphicon-cog"></span></button>
             </li>
             <li>&emsp;</li>
         </ul>

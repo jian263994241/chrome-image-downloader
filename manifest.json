@@ -12,6 +12,9 @@
     "downloads",
     "storage"
   ],
+  "storage": {
+    "options" : "config.json"
+  },
   "background": {
     "scripts": ["js/lib/underscore-min.js","js/background.js"],
     "persistent": false
@@ -29,6 +32,7 @@
       ]
     }
   ],
+  "options_page" :  "options.html" ,
   "browser_action": {
     "default_title": "批量下载图片\n默认抓取当前标签页",
     "default_icon": "img/icon.png"
@@ -37,5 +41,6 @@
   "web_accessible_resources": [
     "*"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "homepage_url": "http://path/to/homepage"
 }

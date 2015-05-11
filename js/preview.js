@@ -23,6 +23,8 @@ angular.module('dlImg', ['ui.bootstrap', 'ui-rangeSlider'])
         };
     })
     .controller('toolbar', function ($scope, $rootScope,$timeout) {
+
+
         $rootScope.selImg = [];
         $scope.model = {
             width: 0,
@@ -30,10 +32,17 @@ angular.module('dlImg', ['ui.bootstrap', 'ui-rangeSlider'])
         };
         $scope.imageView = 'grid';
         $scope.$watchCollection('model', _.debounce(function (newValue, oldValue) {
-            $rootScope.imgs = _.filter($rootScope.originList, function (item) {
-               return  item.width >= $scope.model.width && item.height >= $scope.model.height;
-            });
-            $rootScope.$apply();
+            if(newValue != oldValue){
+
+                $rootScope.imgs = _.filter($rootScope.originList, function (item) {
+                    return  item.width >= $scope.model.width && item.height >= $scope.model.height;
+                });
+                $rootScope.selImg = _.filter($rootScope.selImg, function (item) {
+                    return  item.width >= $scope.model.width && item.height >= $scope.model.height;
+                });
+                $rootScope.$apply();
+            }
+
         }, 300));
 
         $scope.setAll = function () {
@@ -55,6 +64,17 @@ angular.module('dlImg', ['ui.bootstrap', 'ui-rangeSlider'])
                 });
             });
         };
+        $scope.openSetting = function () {
+            window.open('options.html');
+            //location.href = 'options.html';
+        };
+        $scope.download = function () {
+            console.log($rootScope.selImg);
+        };
 
     })
 ;
+
+$(document).ready(function () {
+    angular.bootstrap(document, ['dlImg']);
+});
